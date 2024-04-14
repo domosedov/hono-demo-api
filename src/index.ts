@@ -9,8 +9,9 @@ import { jwt } from "hono/jwt";
 import { logger } from "hono/logger";
 import { timing } from "hono/timing";
 import { auth } from "./auth/routes";
+import { todos } from "./todos/routes";
 
-const _jwtMiddleware: MiddlewareHandler = (c, next) =>
+const JWT: MiddlewareHandler = (c, next) =>
   jwt({
     secret: env(c).JWT_SECRET as string,
   })(c, next);
@@ -32,6 +33,8 @@ app.use(timing());
 app.use("/static/*", serveStatic({ root: "./" }));
 
 app.route("/auth", auth);
+app.use("/todos/*", JWT);
+app.route("/todos", todos);
 
 app.post("/clicked", (c) => {
   return c.html(html` <div>Clicked!!!</div> `);

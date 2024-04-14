@@ -6,12 +6,11 @@ import { verify } from "hono/jwt";
 import { omit } from "remeda";
 import { db } from "../db/client";
 import { usersTable } from "../db/schema";
-import { userCredentialsSchema } from "../schema";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "./constants";
 import generateTokens from "./libs/generate_tokens";
 import { hashPassword, verifyPassword } from "./libs/password";
 import { setTokensCookie } from "./libs/set_tokens_cookie";
-import { tokensSchema } from "./schema";
+import { tokensSchema, userCredentialsSchema } from "./schema";
 
 const credentials = new OpenAPIHono();
 
