@@ -1,4 +1,4 @@
-import { Context } from "hono";
+import type { Context } from "hono";
 import { env } from "hono/adapter";
 import { setCookie } from "hono/cookie";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../constants";

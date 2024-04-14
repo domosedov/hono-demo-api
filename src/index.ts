@@ -10,7 +10,7 @@ import { logger } from "hono/logger";
 import { timing } from "hono/timing";
 import { auth } from "./auth/routes";
 
-const jwtMiddleware: MiddlewareHandler = (c, next) =>
+const _jwtMiddleware: MiddlewareHandler = (c, next) =>
   jwt({
     secret: env(c).JWT_SECRET as string,
   })(c, next);

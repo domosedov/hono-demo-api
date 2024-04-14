@@ -6,12 +6,12 @@
     "db:seed": "bun run src/db/seed.ts",
     "db:studio": "drizzle-kit studio",
     "css:watch": "bunx @tailwindcss/cli@next -i src/style.css -o static/style.css -w",
-    "css:compile": "bunx @tailwindcss/cli@next -i src/style.css -o static/style.css"
+    "css:compile": "bunx @tailwindcss/cli@next -i src/style.css -o static/style.css",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.2.1",
     "@hono/zod-openapi": "^0.11.0",
-    "@hono/zod-validator": "^0.2.1",
     "drizzle-orm": "^0.30.8",
     "drizzle-zod": "^0.5.1",
     "hono": "^4.2.3",
@@ -19,14 +19,20 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@tailwindcss/cli": "^4.0.0-alpha.14",
     "@types/bun": "latest",
     "better-sqlite3": "^9.5.0",
     "drizzle-kit": "^0.20.14",
+    "eslint": "^9.0.0",
     "tailwindcss": "^4.0.0-alpha.14",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.6.0"
   },
   "name": "hono-demo-api",
   "module": "index.ts",
-  "type": "module"
+  "type": "module",
+  "trustedDependencies": [
+    "es5-ext"
+  ]
 }
