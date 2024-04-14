@@ -15,3 +15,12 @@ export const todoInsertSchema = createInsertSchema(todosTable, {
 export const todoCreateSchema = todoInsertSchema
   .pick({ title: true, description: true })
   .openapi("TodoCreate");
+
+export const todoUpdateSchema = todoInsertSchema
+  .pick({
+    title: true,
+    description: true,
+    completed: true,
+  })
+  .partial()
+  .openapi("TodoUpdate");

@@ -104,6 +104,7 @@ app.onError((err) => {
   if (err instanceof HTTPException) {
     return err.getResponse();
   }
+  console.error(err);
   throw new HTTPException(500, { message: "Internal error :(" });
 });
 

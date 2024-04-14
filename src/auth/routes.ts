@@ -67,7 +67,7 @@ credentials.openapi(
 
     const { access_token, refresh_token } = await generateTokens({
       sub: payload.id,
-      secret: env(c).JWT_SECRET as string,
+      secret: env(c)["JWT_SECRET"] as string,
     });
 
     setTokensCookie({ context: c, access_token, refresh_token });
@@ -128,7 +128,7 @@ credentials.openapi(
 
     const { access_token, refresh_token } = await generateTokens({
       sub: user.id,
-      secret: env(c).JWT_SECRET as string,
+      secret: env(c)["JWT_SECRET"] as string,
     });
 
     setTokensCookie({ context: c, access_token, refresh_token });
@@ -206,7 +206,7 @@ credentials.openapi(
   async (c) => {
     const { refresh_token: token } = c.req.valid("json");
 
-    const { sub } = await verify(token, env(c).JWT_SECRET as string);
+    const { sub } = await verify(token, env(c)["JWT_SECRET"] as string);
 
     const maybeUser = await db.query.usersTable.findFirst({
       where: (user, { eq }) => eq(user.id, sub),
@@ -218,7 +218,7 @@ credentials.openapi(
 
     const { access_token, refresh_token } = await generateTokens({
       sub: maybeUser.id,
-      secret: env(c).JWT_SECRET as string,
+      secret: env(c)["JWT_SECRET"] as string,
     });
 
     setTokensCookie({ context: c, access_token, refresh_token });
