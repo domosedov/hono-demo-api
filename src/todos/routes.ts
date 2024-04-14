@@ -65,7 +65,7 @@ todos.openapi(
       .insert(todosTable)
       .values({ ...value, userId: sub })
       .returning();
-    return ctx.json(todo, 201);
+    return ctx.json(todo!, 201);
   }
 );
 

@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { hashPassword } from "../lib/password-hash";
-import { db } from "./db";
+import { db } from "./client";
 import * as schema from "./schema";
 
 const users = await db
@@ -8,7 +7,7 @@ const users = await db
   .values(
     Array.from({ length: 5 }, () => ({
       email: faker.internet.email(),
-      password: hashPassword(faker.internet.password()),
+      password: Bun.password.hashSync(faker.internet.password()),
       name: faker.person.fullName(),
     }))
   )
