@@ -63,7 +63,7 @@ credentials.openapi(
       .values({ email, password: await hashPassword(password) })
       .returning();
 
-    const payload = omit(newUser, ["password"]);
+    const payload = omit(newUser!, ["password"]);
 
     const { access_token, refresh_token } = await generateTokens({
       sub: payload.id,
