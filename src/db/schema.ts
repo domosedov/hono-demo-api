@@ -25,3 +25,11 @@ export const todosTable = sqliteTable("todos", {
     .default(sql`(unixepoch())`),
   updatedAt: integer("updated_at", { mode: "timestamp" }),
 });
+
+export const sessionsTable = sqliteTable("session", {
+  id: text("id").notNull().primaryKey(),
+  userId: integer("user_id", { mode: "number" })
+    .notNull()
+    .references(() => usersTable.id, { onDelete: "cascade" }),
+  expiresAt: integer("expires_at").notNull(),
+});
