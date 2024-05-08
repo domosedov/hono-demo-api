@@ -8,5 +8,6 @@
     "jsxImportSource": "hono/jsx",
     "noEmit": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": ["web"]
 }

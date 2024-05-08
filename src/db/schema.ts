@@ -1,5 +1,10 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 
 export const usersTable = sqliteTable("users", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
@@ -25,6 +30,22 @@ export const todosTable = sqliteTable("todos", {
     .default(sql`(unixepoch())`),
   updatedAt: integer("updated_at", { mode: "timestamp" }),
 });
+
+export const oauthAccountsTable = sqliteTable(
+  "oauth_accounts",
+  {
+    providerId: text("provider_id").notNull(),
+    providerUserId: text("provider_user_id").notNull(),
+    userId: integer("user_id", { mode: "number" })
+      .notNull()
+      .references(() => usersTable.id, { onDelete: "cascade" }),
+  },
+  (table) => {
+    return {
+      pk: primaryKey({ columns: [table.providerId, table.providerUserId] }),
+    };
+  }
+);
 
 export const sessionsTable = sqliteTable("session", {
   id: text("id").notNull().primaryKey(),
