@@ -5,11 +5,13 @@
     "db:migrate": "bun run src/db/migrate.ts",
     "db:seed": "bun run src/db/seed.ts",
     "db:studio": "drizzle-kit studio",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "db:drop": "rm -rf ./src/db/drizzle ./src/db/sqlite.db"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.2.1",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "arctic": "^1.8.0",
     "drizzle-orm": "^0.30.10",
     "drizzle-zod": "^0.5.1",
     "hono": "^4.3.2",
