@@ -6,7 +6,7 @@ import { timing } from "hono/timing";
 import { type Session, type User } from "lucia";
 import { authGuard } from "./auth/auth.guard";
 import { luciaAuthMiddleware } from "./auth/lucia.middleware";
-import { authRoutes } from "./routes/auth";
+import { oauthRoutes } from "./routes/auth";
 
 declare module "hono" {
   interface ContextVariableMap {
@@ -24,7 +24,7 @@ const api = app
   .get("/test", (ctx) => {
     return ctx.json({ message: "Hello" });
   })
-  .route("/auth", authRoutes)
+  .route("/auth", oauthRoutes)
   .get("/lucia/test", authGuard, (ctx) => {
     return ctx.json({ foo: "bar" });
   });

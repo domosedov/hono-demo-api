@@ -16,3 +16,8 @@ export const githubUserEmailSchema = z.object({
 });
 
 export type GithubUserEmail = z.infer<typeof githubUserEmailSchema>;
+
+export type YandexUser = {
+  id: string;
+  default_email?: string;
+};
